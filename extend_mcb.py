@@ -1,14 +1,24 @@
-#! python3
-# mcb.pyw — Saves and loads pieces of text to the clipboard.
+#!/usr/bin/env python3
+# extend_mcb.py — An exercise in reading and writing files.
+# For more information, see README.md
 # Usage:   py.exe mcb.pyw save <keyword> — Saves clipboard text as keyword.
 #          py.exe mcb.pyw delete <keyword> — Removes keyword and associated text from mcb_shelf.
 #          py.exe mcb.pyw <keyword> — Loads text associated with keyword to clipboard.
 #          py.exe mcb.pyw list — Loads list of existing keywords to clipboard.
 #          py.exe mcb.pyw delete — Uses .clear method to empty mcb_shelf of keywords and associated text.
 
+import logging
 import shelve
 import sys
 import pyperclip
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    filename="logging.txt",
+    format="%(asctime)s -  %(levelname)s -  %(message)s",
+)
+logging.disable(logging.CRITICAL)  # Note out to enable logging.
+
 
 mcb_shelf = shelve.open("mcb")
 
